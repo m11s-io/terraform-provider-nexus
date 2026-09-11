@@ -1,6 +1,11 @@
 # Terraform provider Nexus
 
-![codeql workflow](https://github.com/datadrivers/terraform-provider-nexus/actions/workflows/codeql-analysis.yml/badge.svg)
+> Maintained m11s fork of
+> [datadrivers/terraform-provider-nexus](https://github.com/datadrivers/terraform-provider-nexus),
+> published as [`m11s-io/nexus`](https://registry.terraform.io/providers/m11s-io/nexus).
+> See [CHANGES.md](CHANGES.md) for the extensions carried on top of upstream.
+
+![codeql workflow](https://github.com/m11s-io/terraform-provider-nexus/actions/workflows/codeql-analysis.yml/badge.svg)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Go Report Card](https://goreportcard.com/badge/github.com/datadrivers/terraform-provider-nexus)](https://goreportcard.com/report/github.com/datadrivers/terraform-provider-nexus)
 
@@ -27,6 +32,17 @@ Implemented and tested with Sonatype Nexus `3.93.0` (`ubi` image) and DB `H2`.
 - `nexus_security_oidc` and `data.nexus_security_oidc` require Nexus Repository Pro **3.93.0 or later** (OAuth2/OIDC REST API `/service/rest/v1/security/oauth2`, see [NEXUS-50731](https://help.sonatype.com/en/sonatype-nexus-repository-3-93-0-release-notes.html)). The instance must be started with `nexus.security.oauth2.enabled=true` and `nexus.jwt.enabled=true` in `nexus.properties`, and the `OAuth2Realm` must be active (manage via `nexus_security_realms`).
 
 ## Usage
+
+```hcl
+terraform {
+  required_providers {
+    nexus = {
+      source  = "m11s-io/nexus"
+      version = "3.0.1-m11s.1"
+    }
+  }
+}
+```
 
 ### Provider config
 
