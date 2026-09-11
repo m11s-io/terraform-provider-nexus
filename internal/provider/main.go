@@ -147,6 +147,7 @@ func Provider() *schema.Provider {
 			"nexus_security_oidc":                         security.ResourceSecurityOIDC(),
 			"nexus_security_saml":                         security.ResourceSecuritySAML(),
 			"nexus_security_user":                         security.ResourceSecurityUser(),
+			"nexus_security_npm_auth_token":               security.ResourceSecurityNpmAuthToken(),
 			"nexus_security_user_token":                   security.ResourceSecurityUserToken(),
 			"nexus_mail_config":                           other.ResourceMailConfig(),
 			"nexus_privilege_application":                 security.ResourceSecurityPrivilegeApplication(),
@@ -226,6 +227,15 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		ClientKeyPath:         &clientKeyPath,
 		RootCAPath:            &rootCaPath,
 	}
+
+	security.ConfigureNpmAuthTokenClient(security.NpmAuthTokenClientConfig{
+		URL:                   config.URL,
+		Insecure:              config.Insecure,
+		Timeout:               timeout,
+		ClientCertificatePath: clientCertPath,
+		ClientKeyPath:         clientKeyPath,
+		RootCAPath:            rootCaPath,
+	})
 
 	nc := nexus.NewClient(config)
 
