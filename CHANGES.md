@@ -23,3 +23,11 @@ The Nexus `NpmToken` realm must be active. Nexus exposes no corresponding
 public operation for revoking this npm bearer token, so destroying the resource
 removes it from Terraform state but does not revoke it on the server.
 
+
+## Hugging Face proxy repository (next release: 3.0.1-m11s.2)
+
+Adds `nexus_repository_huggingface_proxy`, including import by repository name,
+upstream bearer-token authentication, connection settings, cleanup and routing
+rules. Uses the Nexus Hugging Face REST API (available since Nexus 3.77).
+HTTP clients are scoped to provider instances. Upstream secrets stay in sensitive
+state and are not included in HTTP error messages.
