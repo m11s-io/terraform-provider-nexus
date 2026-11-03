@@ -13,3 +13,7 @@ debug.test
 
 # nexus pro license file
 scripts/license.lic
+
+# Local Superpowers plans, specs, reviews, and session files
+.superpowers/
+superpowers/
